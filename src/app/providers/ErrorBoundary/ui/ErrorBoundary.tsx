@@ -3,7 +3,7 @@ import { PageError } from "widgets/pageError";
 
 interface Props {
   children: ReactNode;
-}
+} 
 
 interface State {
   hasError: boolean;
