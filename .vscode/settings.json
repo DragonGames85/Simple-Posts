@@ -15,5 +15,6 @@
         "postcss",
         "scss"
     ],
+    "svg.preview.background": "custom",
 
 }
