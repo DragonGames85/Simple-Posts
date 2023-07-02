@@ -29,3 +29,7 @@ type DeepPartial<T> = T extends object // собственный deep partial
       [P in keyof T]?: DeepPartial<T[P]>;
     }
   : T;
+
+type OptionalRecord<K extends keyof any, T> = { // собственный Record, так как обычный ругается на отсутствие одного из возможных ключей
+    [P in K]?: T;
+};
