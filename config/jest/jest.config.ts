@@ -15,8 +15,8 @@ export default {
     testEnvironment: 'jsdom',
     coveragePathIgnorePatterns: [
         '\\\\node_modules\\\\',
-    ],
-    moduleFileExtensions: [
+    ], // игнорируем node_modules
+    moduleFileExtensions: [ // указываем расширения файлов
         'js',
         'jsx',
         'ts',
@@ -26,16 +26,20 @@ export default {
     ],
     moduleDirectories: [
         'node_modules',
-    ],
+    ], // указываем где node_modules
+    // для абсолютных импортов
     modulePaths: [
         '<rootDir>src',
     ],
     testMatch: [
+        // ищем файлы с тестами
         // Обнаружил разницу между МАК ОС и ВИНДОУС!!!
         '<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)',
     ],
-    rootDir: '../../',
+    rootDir: '../../', // указываем путь корня проекта
+    // подключаем разные пакеты (например для работы с DOM)
     setupFilesAfterEnv: ['<rootDir>config/jest/setupTests.ts'],
+    // для парсинга scss и svg https://jestjs.io/docs/webpack
     moduleNameMapper: {
         '\\.s?css$': 'identity-obj-proxy',
         '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),

@@ -3,6 +3,9 @@ import { useDispatch, useStore } from 'react-redux';
 import { ReduxStoreWithManager, StateSchemaKey } from 'app/providers/StoreProvider/config/StateSchema';
 import { Reducer } from '@reduxjs/toolkit';
 
+// Dynamic Module Loader - пере-используемый компонент, где можно передать children-компонент с
+// редюсерами, которые надо доставать только тогда когда они нужны.
+
 export type ReducersList = {
     [name in StateSchemaKey]?: Reducer;
 }
@@ -25,14 +28,14 @@ export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = (props) => {
     useEffect(() => {
         Object.entries(reducers).forEach(([name, reducer]) => {
             store.reducerManager.add(name as StateSchemaKey, reducer);
-            dispatch({ type: `@INIT ${name} reducer` });
+            dispatch({ type: `@INIT ${name} reducer` }); // для devtools, чтобы дебажить поведение
         });
 
         return () => {
             if (removeAfterUnmount) {
                 Object.entries(reducers).forEach(([name, reducer]) => {
                     store.reducerManager.remove(name as StateSchemaKey);
-                    dispatch({ type: `@DESTROY ${name} reducer` });
+                    dispatch({ type: `@DESTROY ${name} reducer` }); // для devtools, чтобы дебажить поведение
                 });
             }
         };

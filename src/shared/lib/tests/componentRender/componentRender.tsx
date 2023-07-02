@@ -10,6 +10,12 @@ export interface componentRenderOptions {
     initialState?: DeepPartial<StateSchema>;
 }
 
+// это функция для рендера компонентов в тестах
+// она оборачивает компонент в провайдеры, которые нужны для работы приложения
+// MemoryRouter - для работы с роутингом (компонентами с href), который принимает начальный роут
+// StoreProvider - для работы с контекстом (компонентами с useContext)
+// I18nextProvider - для работы с i18n (компонентами с useTranslation)
+
 export function componentRender(component: ReactNode, options: componentRenderOptions = {}) {
     const {
         route = '/',

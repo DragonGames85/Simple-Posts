@@ -15,7 +15,7 @@ export const Code = memo((props: CodeProps) => {
     const onCopy = useCallback(() => {
         navigator.clipboard.writeText(text);
     }, [text]);
-
+    // pre - спец тег позволяющий сохранить переносы
     return (
         <pre className={classNames(cls.Code, {}, [className])}>
             <Button onClick={onCopy} className={cls.copyBtn} theme={ButtonTheme.CLEAR}>

@@ -1,3 +1,6 @@
+// это скрипт для генерации json-отчета для loki https://github.com/reg-viz/reg-cli
+// скрипт взял с https://github.com/oblador/loki/issues/76#issuecomment-595777550
+
 const { promisify } = require('util');
 const { readdir, writeFile } = require('fs');
 const { join: joinPath, relative } = require('path');

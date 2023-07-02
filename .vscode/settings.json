@@ -16,5 +16,12 @@
         "scss"
     ],
     "svg.preview.background": "custom",
+    "cSpell.words": [
+        "linebreak"
+    ],
+    "cSpell.ignoreWords": [
+        "ulbi",
+        "дженерика"
+    ],
 
 }

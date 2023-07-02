@@ -8,6 +8,9 @@ import { CombinedState, Reducer } from 'redux';
 import { StateSchema, ThunkExtraArg } from './StateSchema';
 import { createReducerManager } from './reducerManager';
 
+// создаем configureStore внутри функции createReduxStore, чтобы можно было переиспользовать например в storybook
+// configureStore принимает 3 дженерика: 1) состояние хранилища: user, profile 2) Actions и 3) middleware
+// configureStore<S = any, A extends Action = AnyAction, M extends Middlewares<S> = [ThunkMiddlewareFor<S>]>
 export function createReduxStore(
     initialState?: StateSchema,
     asyncReducers?: ReducersMapObject<StateSchema>,
@@ -31,6 +34,7 @@ export function createReduxStore(
         devTools: __IS_DEV__,
         preloadedState: initialState,
         middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+            // для удобства можно добавить axios instance в middleware и использовать в asyncThunk
             thunk: {
                 extraArgument: extraArg,
             },

@@ -1,5 +1,7 @@
 import { lazy } from 'react';
 
+// правильно: export const MainPageAsync = lazy(() => import('./MainPage'))
+
 export const MainPageAsync = lazy(() => new Promise((resolve) => {
     // @ts-ignore
     // ТАК В РЕАЛЬНЫХ ПРОЕКТАХ НЕ ДЕЛАТЬ!!!!! ДЕЛАЕМ ДЛЯ КУРСА!

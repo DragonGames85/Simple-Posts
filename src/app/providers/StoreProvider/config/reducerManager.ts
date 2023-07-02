@@ -3,6 +3,9 @@ import {
 } from '@reduxjs/toolkit';
 import { ReducerManager, StateSchema, StateSchemaKey } from './StateSchema';
 
+// Reducer Manager нужен чтобы добавлять/удалять редюсеры когда нужно. Тоесть не тянуть ненужные
+// редюсеры в бандл, а добавлять их только тогда когда нужны
+
 export function createReducerManager(initialReducers: ReducersMapObject<StateSchema>): ReducerManager {
     const reducers = { ...initialReducers };
 

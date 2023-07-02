@@ -7,3 +7,6 @@ export {
     Counter,
     CounterSchema,
 };
+
+// тестовая сущность, для ознакомления с redux-toolkit
+// https://redux-toolkit.js.org/tutorials/quick-start + 30 выпуск ulbi tv

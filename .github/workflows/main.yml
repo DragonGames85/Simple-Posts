@@ -1,13 +1,15 @@
 name: linting, testing, building
+# тут указываем где будет происходить наши workflow
+# то есть при пуше и пул реквест в мастер
 on:
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
 jobs:
-  pipeline:
-    runs-on: ubuntu-latest
-    strategy:
+  pipeline: # название job, 
+    runs-on: ubuntu-latest # указываем на чем будут запускаться jobs
+    strategy: # указываем версию node js
       matrix:
         node-version: [ 17.x ]
 
@@ -16,17 +18,17 @@ jobs:
       - name: Staring Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ matrix.node-version }} # запускаем node js
       - name: install modules
         run: npm install
       - name: build production project
         run: npm run build:prod
         if: always()
-      # - name: linting typescript
-      #   run: npm run lint:ts
-        # if: always()
-      # - name: linting css
-      #   run: npm run lint:scss
+      - name: linting typescript
+        run: npm run lint:ts
+        if: always()
+      - name: linting css
+        run: npm run lint:scss
       - name: unit testing
         if: always()
         run: npm run test:unit
@@ -36,3 +38,4 @@ jobs:
       - name: screenshot testing
         run: npm run test:ui:ci
         if: always()
+# if always() нужен для того чтобы в случае ошибки в одном из шагов все равно выполнялись остальные шаги

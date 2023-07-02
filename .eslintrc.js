@@ -2,7 +2,7 @@ module.exports = {
     env: {
         browser: true,
         es2021: true,
-        jest: true,
+        jest: true, // указываем что есть jest
     },
     extends: [
         'plugin:react/recommended',
@@ -18,50 +18,56 @@ module.exports = {
         sourceType: 'module',
     },
     plugins: [
-        'react',
-        '@typescript-eslint',
-        'i18next',
-        'react-hooks',
+        'react', // плагин для реакта
+        '@typescript-eslint', // плагин для ts
+        'i18next', // плагин для переводов
+        'react-hooks', // плагин для хуков
     ],
     rules: {
-        'react/jsx-indent': [2, 4],
-        'react/jsx-indent-props': [2, 4],
-        indent: [2, 4],
-        'react/jsx-filename-extension': [
+        'react/jsx-indent': [2, 4], // отступы 4 пробела [2 означает что правило работает]
+        'react/jsx-indent-props': [2, 4], // отступы для props
+        indent: [2, 4], // пробелы для обычного кода
+        'react/jsx-filename-extension': [ // разрешаем расширения файлов
             2,
             { extensions: ['.js', '.jsx', '.tsx'] },
         ],
-        'import/no-unresolved': 'off',
-        'import/prefer-default-export': 'off',
-        'no-unused-vars': 'off',
-        'react/require-default-props': 'off',
-        'react/react-in-jsx-scope': 'off',
-        'react/jsx-props-no-spreading': 'warn',
-        'react/function-component-definition': 'off',
-        'no-shadow': 'off',
-        'import/extensions': 'off',
-        'import/no-extraneous-dependencies': 'off',
-        'no-underscore-dangle': 'off',
+        'import/no-unresolved': 'off', // разрешаем абсолютные пути
+        'import/prefer-default-export': 'off', // разрешаем именованные экспорты
+        'react/require-default-props': 'off', // разрешаем переменные с "?" и без default значения (напр. classNames?)
+        'react/react-in-jsx-scope': 'off', // для jsx файлов не нужен import React, так как он не нужен с React 17
+        'react/jsx-props-no-spreading': 'warn', // spread операторы в jsx
+        'react/function-component-definition': 'off', // предпочитаем стрелочные компоненты
+        'no-shadow': 'off', // хз
+        'import/extensions': 'off', // при импорте не нужно указывать расширение
+        'import/no-extraneous-dependencies': 'off', // разрешить импорт внешних модулей, которые не объявлены в зависимостях package.json, devDependencies, optionDependencies, peerDependencies или bundledDependencies.
+        'no-underscore-dangle': 'off', // разрешить нижние подчеркивания __is_dev__
+        // правило для того чтобы указать что нет переводов
         'i18next/no-literal-string': [
             'error',
             {
-                markupOnly: true,
-                ignoreAttribute: ['data-testid', 'to'],
+                markupOnly: true, // только ругаться в файлах jsx
+                ignoreAttribute: ['data-testid', 'to'], // игнорировать переводы в атрибутах 'data-testid', 'to'
             },
         ],
-        'max-len': ['error', { ignoreComments: true, code: 120 }],
-        'jsx-a11y/no-static-element-interactions': 'off',
-        'jsx-a11y/click-events-have-key-events': 'off',
-        'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
-        'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies,
-        'no-param-reassign': 'off',
-        'no-undef': 'off',
+        'max-len': ['error', { ignoreComments: true, code: 120 }], // максимальная длина строки
+        'jsx-a11y/no-static-element-interactions': 'off', // разрешаем onClick на статичные элементы (div)
+        'jsx-a11y/click-events-have-key-events': 'off', // разрешаем onClick без onKeyDown
+        'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks, в функциональных компонентах нужно использовать хуки
+        'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies, в useEffect нужно указывать зависимости
+        'no-param-reassign': 'off', // разрешаем изменять параметры функции
+        'no-undef': 'off', // разрешаем использовать необъявленные переменные
+        'react/no-array-index-key': 'off', // разрешаем использовать индексы массивов в качестве ключей
+        'linebreak-style': 'off', // Expected line-breaks to be 'LF' but found 'CRLF'
+        // если люди работают с разных ОС (ubuntu и прч.) то у них другой символ пробела, а именно CLRF
+        'no-unused-vars': 'off', // даем warning по неиспользуемым переменным
+        '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
     },
-    globals: {
+    globals: { // объявляем глобальные переменные
         __IS_DEV__: true,
         __API__: true,
         __PROJECT__: true,
     },
+    // overrides для того чтобы в определенных файлах переопределять правила
     overrides: [
         {
             files: ['**/src/**/*.{test,stories}.{ts,tsx}'],

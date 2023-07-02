@@ -6,7 +6,7 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 
 i18n
     .use(Backend)
-    .use(LanguageDetector)
+    .use(LanguageDetector) // вроде сохраняет выбранный язык в local storage
     .use(initReactI18next)
     .init({
         fallbackLng: 'en',
