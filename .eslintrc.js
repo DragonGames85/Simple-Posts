@@ -46,7 +46,7 @@ module.exports = {
             'error',
             {
                 markupOnly: true, // только ругаться в файлах jsx
-                ignoreAttribute: ['data-testid', 'to'], // игнорировать переводы в атрибутах 'data-testid', 'to'
+                ignoreAttribute: ['data-testid', 'to', 'target'], // игнорировать переводы в атрибутах 'data-testid', 'to'
             },
         ],
         'max-len': ['error', { ignoreComments: true, code: 120 }], // максимальная длина строки
@@ -61,6 +61,7 @@ module.exports = {
         // если люди работают с разных ОС (ubuntu и прч.) то у них другой символ пробела, а именно CLRF
         'no-unused-vars': 'off', // даем warning по неиспользуемым переменным
         '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+        'arrow-body-style': 'off',
     },
     globals: { // объявляем глобальные переменные
         __IS_DEV__: true,
