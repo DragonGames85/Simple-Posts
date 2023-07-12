@@ -1,17 +1,17 @@
 module.exports = {
-    // 1️⃣ Path to your story files
+    // 1 Path to your story files
     stories: [
         '../../src/**/*.stories.@(js|jsx|ts|tsx)',
     ],
-    // 2️⃣ Path to your component files
+    // 2 Path to your component files
     addons: [
         '@storybook/addon-links',
         '@storybook/addon-essentials',
         '@storybook/addon-interactions',
     ],
-    // 3️⃣ Path to your webpack configuration
+    // 3 Path to your webpack configuration
     framework: '@storybook/react',
-    // 4️⃣ Path to your webpack configuration
+    // 4 Path to your webpack configuration
     core: {
         builder: 'webpack5',
     },
