@@ -47,7 +47,7 @@ module.exports = {
             'error',
             {
                 markupOnly: true, // только ругаться в файлах jsx
-                ignoreAttribute: ['data-testid', 'to', 'target'], // игнорировать переводы в атрибутах 'data-testid', 'to'
+                ignoreAttribute: ['data-testid', 'to', 'target', 'justify', 'align', 'direction', 'gap'], // игнорировать переводы в атрибутах 'data-testid', 'to'
             },
         ],
         'max-len': ['error', { ignoreComments: true, code: 120 }], // максимальная длина строки

@@ -5,6 +5,7 @@ import { LangSwitcher } from 'widgets/LangSwitcher/LangSwitcher';
 import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/Button';
 import { useSelector } from 'react-redux';
 import { getUserAuthData } from 'entities/User';
+import { VStack } from 'shared/ui/Stack';
 import cls from './Sidebar.module.scss';
 import { SidebarItem } from '../SidebarItem/SidebarItem';
 import { getSidebarItems } from '../../model/selectors/getSidebarItems';
@@ -21,19 +22,13 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
         setCollapsed((prev) => !prev);
     };
 
-    const itemsList = useMemo(() => sidebarItemsList.map((item) => (
-        <SidebarItem
-            item={item}
-            collapsed={collapsed}
-            key={item.path}
-        />
-    )), [collapsed, sidebarItemsList]);
+    const itemsList = useMemo(
+        () => sidebarItemsList.map((item) => <SidebarItem item={item} collapsed={collapsed} key={item.path} />),
+        [collapsed, sidebarItemsList],
+    );
 
     return (
-        <menu
-            data-testid="sidebar"
-            className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [className])}
-        >
+        <menu data-testid="sidebar" className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [className])}>
             <Button
                 data-testid="sidebar-toggle"
                 onClick={onToggle}
@@ -41,18 +36,13 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
                 theme={ButtonTheme.BACKGROUND_INVERTED}
                 size={ButtonSize.L}
                 square
-            >
-                {collapsed ? '>' : '<'}
-            </Button>
-            <div className={cls.items}>
+            />
+            <VStack gap="8" className={cls.items}>
                 {itemsList}
-            </div>
+            </VStack>
             <div className={cls.switchers}>
                 <ThemeSwitcher />
-                <LangSwitcher
-                    short={collapsed}
-                    className={cls.lang}
-                />
+                <LangSwitcher short={collapsed} className={cls.lang} />
             </div>
         </menu>
     );
