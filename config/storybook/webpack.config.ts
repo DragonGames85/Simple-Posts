@@ -14,6 +14,8 @@ export default ({ config }: {config: webpack.Configuration}) => {
         html: '',
         entry: '',
         src: path.resolve(__dirname, '..', '..', 'src'),
+        locales: '',
+        buildLocales: '',
     };
     config!.resolve!.modules!.push(paths.src); // добавляем путь к модулям
     config!.resolve!.extensions!.push('.ts', '.tsx'); // добавляем расширения

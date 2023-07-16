@@ -22,6 +22,7 @@ module.exports = {
         '@typescript-eslint', // плагин для ts
         'i18next', // плагин для переводов
         'react-hooks', // плагин для хуков
+        'simple-posts-plugin', // собственный плагин
     ],
     rules: {
         'react/jsx-indent': [2, 4], // отступы 4 пробела [2 означает что правило работает]
@@ -62,6 +63,7 @@ module.exports = {
         'no-unused-vars': 'off', // даем warning по неиспользуемым переменным
         '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
         'arrow-body-style': 'off',
+        'simple-posts-plugin/path-checker': 'error',
     },
     globals: { // объявляем глобальные переменные
         __IS_DEV__: true,
