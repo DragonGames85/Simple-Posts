@@ -44,6 +44,15 @@ export default {
         '\\.s?css$': 'identity-obj-proxy',
         '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
     },
+    reporters: [ // это html report для unit тестов - jest-html-reporters
+        'default',
+        ['jest-html-reporters', {
+            publicPath: '<rootDir>/reports/unit',
+            filename: 'report.html',
+            openReport: true,
+            inlineSource: true, // всё в одном html файле - true
+        }],
+    ],
     // Indicates whether the coverage information should be collected while executing the test
     // collectCoverage: false,
 
