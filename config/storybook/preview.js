@@ -3,6 +3,8 @@ import { StyleDecorator } from '../../src/shared/config/storybook/StyleDecorator
 import { ThemeDecorator } from '../../src/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from '../../src/app/providers/ThemeProvider';
 import { RouterDecorator } from '../../src/shared/config/storybook/RouterDecorator/RouterDecorator';
+import { SuspenseDecorator } from '../../src/shared/config/storybook/SuspenseDecorator/SuspenseDecorator';
+
 // тут пути ОТНОСИТЕЛЬНЫЕ, т.к. мы настроили абсолютные импорты только для папки src
 // файл для декораторов сторис и прочей обертки
 // https://storybook.js.org/docs/react/configure/overview#configure-story-rendering
@@ -23,3 +25,5 @@ addDecorator(StyleDecorator);
 addDecorator(ThemeDecorator(Theme.LIGHT));
 // декоратор для компонентов с ссылками href, to
 addDecorator(RouterDecorator);
+// декоратор для компонентов с suspense
+addDecorator(SuspenseDecorator);
