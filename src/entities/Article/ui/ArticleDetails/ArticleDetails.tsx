@@ -22,7 +22,8 @@ import {
     getArticleDetailsError,
     getArticleDetailsIsLoading,
 } from '../../model/selectors/articleDetails';
-import { ArticleBlock, ArticleBlockType } from '../../model/types/article';
+import { ArticleBlock } from '../../model/types/article';
+import { ArticleBlockType } from '../../model/consts/articleConsts';
 
 interface ArticleDetailsProps {
     className?: string;
@@ -44,29 +45,11 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
     const renderBlock = useCallback((block: ArticleBlock) => {
         switch (block.type) {
         case ArticleBlockType.CODE:
-            return (
-                <ArticleCodeBlockComponent
-                    key={block.id}
-                    block={block}
-                    className={cls.block}
-                />
-            );
+            return <ArticleCodeBlockComponent key={block.id} block={block} className={cls.block} />;
         case ArticleBlockType.IMAGE:
-            return (
-                <ArticleImageBlockComponent
-                    key={block.id}
-                    block={block}
-                    className={cls.block}
-                />
-            );
+            return <ArticleImageBlockComponent key={block.id} block={block} className={cls.block} />;
         case ArticleBlockType.TEXT:
-            return (
-                <ArticleTextBlockComponent
-                    key={block.id}
-                    className={cls.block}
-                    block={block}
-                />
-            );
+            return <ArticleTextBlockComponent key={block.id} className={cls.block} block={block} />;
         default:
             return null;
         }
@@ -91,29 +74,15 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
             </>
         );
     } else if (error) {
-        content = (
-            <Text
-                align={TextAlign.CENTER}
-                title={t('Произошла ошибка при загрузке статьи.')}
-            />
-        );
+        content = <Text align={TextAlign.CENTER} title={t('Произошла ошибка при загрузке статьи.')} />;
     } else {
         content = (
             <>
                 <HStack justify="center" max className={cls.avatarWrapper}>
-                    <Avatar
-                        size={200}
-                        src={article?.img}
-                        className={cls.avatar}
-                    />
+                    <Avatar size={200} src={article?.img} className={cls.avatar} />
                 </HStack>
                 <VStack gap="4" max>
-                    <Text
-                        className={cls.title}
-                        title={article?.title}
-                        text={article?.subtitle}
-                        size={TextSize.L}
-                    />
+                    <Text className={cls.title} title={article?.title} text={article?.subtitle} size={TextSize.L} />
                     <HStack gap="8" className={cls.articleInfo}>
                         <Icon className={cls.icon} Svg={EyeIcon} />
                         <Text text={String(article?.views)} />
