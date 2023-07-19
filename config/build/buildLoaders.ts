@@ -13,7 +13,10 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
     };
 
     // babel loader
-    const babelLoader = buildBabelLoader(options);
+    // const babelLoader = buildBabelLoader(options);
+
+    const codeBabelLoader = buildBabelLoader({ ...options, isTsx: false });
+    const tsxCodeBabelLoader = buildBabelLoader({ ...options, isTsx: true });
 
     const cssLoader = buildCssLoader(isDev);
 
@@ -21,11 +24,11 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
     // babel - спец транспилятор, который перегоняет новый js в старый
     // чтобы все браузеры поддерживали
     // typescript уже умеет обрабатывать jsx
-    const typescriptLoader = {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/, // исключая node modules
-    };
+    // const typescriptLoader = {
+    //     test: /\.tsx?$/,
+    //     use: 'ts-loader',
+    //     exclude: /node_modules/, // исключая node modules
+    // };
 
     // https://v4.webpack.js.org/loaders/file-loader для png, jpeg, jpg файлов
     const fileLoader = {
@@ -38,5 +41,12 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
     };
 
     // порядок loader's имеет значение!!!
-    return [fileLoader, svgLoader, babelLoader, typescriptLoader, cssLoader];
+    return [
+        fileLoader,
+        svgLoader,
+        codeBabelLoader,
+        tsxCodeBabelLoader,
+        // typescriptLoader,
+        cssLoader,
+    ];
 }
