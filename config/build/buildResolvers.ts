@@ -7,7 +7,9 @@ export function buildResolvers(options: BuildOptions): ResolveOptions {
         preferAbsolute: true, // абсолютные пути в приоритете
         modules: [options.paths.src, 'node_modules'], // абсолютные пути для библиотек
         mainFiles: ['index'], // главный файл - index
-        alias: {}, // без собаки
+        alias: {
+            '@': options.paths.src,
+        }, // без собаки
         // для собаки alias: {"@" : options.paths.src}
     };
 }

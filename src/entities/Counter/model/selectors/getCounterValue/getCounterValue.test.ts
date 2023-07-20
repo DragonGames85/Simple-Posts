@@ -1,4 +1,4 @@
-import { StateSchema } from 'app/providers/StoreProvider';
+import { StateSchema } from '@/app/providers/StoreProvider';
 import { getCounterValue } from './getCounterValue';
 
 // deep partial - это когда мы делаем все свойства объекта необязательными, и все свойства объекта могут быть undefined.
