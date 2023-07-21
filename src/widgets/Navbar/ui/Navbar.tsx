@@ -9,7 +9,7 @@ import {
 } from '@/entities/User';
 import { Text, TextTheme } from '@/shared/ui/Text/Text';
 import { AppLink, AppLinkTheme } from '@/shared/ui/AppLink/AppLink';
-import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
+import { RoutePath } from '@/shared/const/router';
 import { Dropdown } from '@/shared/ui/Popups/components/Dropdown/Dropdown';
 import { Avatar } from '@/shared/ui/Avatar/Avatar';
 import { HStack } from '@/shared/ui/Stack';
@@ -39,16 +39,8 @@ export const Navbar = memo(({ className }: NavbarProps) => {
     if (authData) {
         return (
             <header className={classNames(cls.Navbar, {}, [className])}>
-                <Text
-                    className={cls.appName}
-                    title={t('Ulbi TV App')}
-                    theme={TextTheme.INVERTED}
-                />
-                <AppLink
-                    to={RoutePath.article_create}
-                    theme={AppLinkTheme.SECONDARY}
-                    className={cls.createBtn}
-                >
+                <Text className={cls.appName} title={t('Ulbi TV App')} theme={TextTheme.INVERTED} />
+                <AppLink to={RoutePath.article_create} theme={AppLinkTheme.SECONDARY} className={cls.createBtn}>
                     {t('Создать статью')}
                 </AppLink>
                 <HStack gap="16" className={cls.actions}>
@@ -61,19 +53,10 @@ export const Navbar = memo(({ className }: NavbarProps) => {
 
     return (
         <header className={classNames(cls.Navbar, {}, [className])}>
-            <Button
-                theme={ButtonTheme.CLEAR_INVERTED}
-                className={cls.links}
-                onClick={onShowModal}
-            >
+            <Button theme={ButtonTheme.CLEAR_INVERTED} className={cls.links} onClick={onShowModal}>
                 {t('Войти')}
             </Button>
-            {isAuthModal && (
-                <LoginModal
-                    isOpen={isAuthModal}
-                    onClose={onCloseModal}
-                />
-            )}
+            {isAuthModal && <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />}
         </header>
     );
 });

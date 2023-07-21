@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { memo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
+import { RoutePath } from '@/shared/const/router';
 import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { getArticleDetailsData } from '@/entities/Article';
@@ -34,10 +34,7 @@ export const ArticleDetailsPageHeader = memo((props: ArticleDetailsPageHeaderPro
                 {t('Назад к списку')}
             </Button>
             {canEdit && (
-                <Button
-                    theme={ButtonTheme.OUTLINE}
-                    onClick={onEditArticle}
-                >
+                <Button theme={ButtonTheme.OUTLINE} onClick={onEditArticle}>
                     {t('Редактировать')}
                 </Button>
             )}
