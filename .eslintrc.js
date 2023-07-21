@@ -74,7 +74,7 @@ module.exports = {
         'no-unused-vars': 'off', // даем warning по неиспользуемым переменным
         '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
         'arrow-body-style': 'off',
-        'simple-posts-plugin/path-checker': 'error',
+        'simple-posts-plugin/path-checker': ['error', { alias: '@' }],
     },
     globals: { // объявляем глобальные переменные
         __IS_DEV__: true,
