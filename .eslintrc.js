@@ -75,6 +75,13 @@ module.exports = {
         '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
         'arrow-body-style': 'off',
         'simple-posts-plugin/path-checker': ['error', { alias: '@' }],
+        'simple-posts-plugin/layer-imports': [
+            'error',
+            {
+                alias: '@',
+                ignoreImportPatterns: ['**/StoreProvider', '**/testing'],
+            },
+        ],
         'simple-posts-plugin/public-api-imports': [
             'error',
             {
