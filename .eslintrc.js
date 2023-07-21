@@ -23,10 +23,12 @@ module.exports = {
         'i18next', // плагин для переводов
         'react-hooks', // плагин для хуков
         'simple-posts-plugin', // собственный плагин
+        'unused-imports', // неиспользуемые импорты
     ],
     rules: {
         'react/jsx-indent': [2, 4], // отступы 4 пробела [2 означает что правило работает]
         'react/jsx-indent-props': [2, 4], // отступы для props
+        'unused-imports/no-unused-imports': 'error',
         indent: [2, 4], // пробелы для обычного кода
         'react/jsx-filename-extension': [ // разрешаем расширения файлов
             2,
