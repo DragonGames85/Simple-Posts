@@ -26,7 +26,7 @@ export function buildWebpackConfig(options: BuildOptions): webpack.Configuration
         },
         resolve: buildResolvers(options),
         // вне режима разработки нам они не нужны (inline-source-map добавляет лишние коментарии при прод сборке)
-        devtool: isDev ? 'inline-source-map' : undefined, // чтобы знать в каком файле произошла ошибка (полный путь)
+        devtool: isDev ? 'eval-cheap-module-source-map' : undefined, // чтобы знать в каком файле произошла ошибка (полный путь)
         devServer: isDev ? buildDevServer(options) : undefined, // для автоматического изменения (не нужно каждый раз пересобирать проект)
     };
 }

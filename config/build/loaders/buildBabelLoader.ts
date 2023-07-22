@@ -6,21 +6,16 @@ interface BuildBabelLoaderProps extends BuildOptions {
 }
 
 export function buildBabelLoader({ isDev, isTsx }: BuildBabelLoaderProps) {
+    const isProd = !isDev;
     return {
         test: isTsx ? /\.(jsx|tsx)$/ : /\.(js|ts)$/,
         exclude: /node_modules/,
         use: {
             loader: 'babel-loader',
             options: {
+                cacheDirectory: true, // кэширование для кусков кода, которые редко меняются
                 presets: ['@babel/preset-env'],
                 plugins: [
-                    [
-                        'i18next-extract',
-                        {
-                            locales: ['ru', 'en'],
-                            keyAsDefaultValue: true,
-                        },
-                    ],
                     [
                         '@babel/plugin-transform-typescript',
                         {
@@ -28,7 +23,7 @@ export function buildBabelLoader({ isDev, isTsx }: BuildBabelLoaderProps) {
                         },
                     ],
                     '@babel/plugin-transform-runtime',
-                    isTsx && [ // вызываем собственный babel плагин который убирает data-testid из сборки
+                    isTsx && isProd && [ // вызываем собственный babel плагин который убирает data-testid из сборки
                         babelRemovePropsPlugin,
                         {
                             props: ['data-testid'],

@@ -14,29 +14,18 @@ export function buildPlugins({
     apiUrl,
     project,
 }: BuildOptions): webpack.WebpackPluginInstance[] {
+    const isProd = !isDev;
     // вроде как порядок плагинов не важен
-
     const plugins = [
         new HtmlWebpackPlugin({
             template: paths.html,
         }), // используем index.html как шаблон, иначе у него будет пропадать <div id = root>
         new webpack.ProgressPlugin(), // следит за прогрессом сборки
-        new MiniCssExtractPlugin({
-            // как webpack будет собирать файлы css
-            filename: 'css/[name].[contenthash:8].css',
-            // чанки для асинхронного разбития файлов
-            chunkFilename: 'css/[name].[contenthash:8].css',
-        }),
         new webpack.DefinePlugin({
             // с помощью него можно прокидывать переменные через всё приложение
             __IS_DEV__: JSON.stringify(isDev),
             __API__: JSON.stringify(apiUrl),
             __PROJECT__: JSON.stringify(project),
-        }),
-        new CopyPlugin({
-            patterns: [
-                { from: paths.locales, to: paths.buildLocales },
-            ],
         }),
         new CircularDependencyPlugin({ // плагин для обнаружения кольцевых зависимостей
             exclude: /node_modules/,
@@ -64,6 +53,24 @@ export function buildPlugins({
         plugins.push(
             new BundleAnalyzerPlugin({
                 openAnalyzer: false, // false - выключить отчёт, true - включить
+            }),
+        );
+    }
+
+    if (isProd) {
+        plugins.push(
+            new MiniCssExtractPlugin({
+            // как webpack будет собирать файлы css
+                filename: 'css/[name].[contenthash:8].css',
+                // чанки для асинхронного разбития файлов
+                chunkFilename: 'css/[name].[contenthash:8].css',
+            }),
+        );
+        plugins.push( // плагин для перетаскивания
+            new CopyPlugin({
+                patterns: [
+                    { from: paths.locales, to: paths.buildLocales },
+                ],
             }),
         );
     }
