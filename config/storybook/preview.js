@@ -17,6 +17,15 @@ export const parameters = {
             date: /Date$/,
         },
     },
+    layout: 'fullscreen', // без padding вокруг сторис
+    themes: { // темы для storybook-addon-themes
+        default: 'light',
+        list: [
+            { name: 'light', class: Theme.LIGHT, color: '#ffffff' },
+            { name: 'dark', class: Theme.DARK, color: '#000000' },
+            { name: 'orange', class: Theme.ORANGE, color: '#ffb005' },
+        ],
+    },
 };
 // про декораторы: https://storybook.js.org/docs/react/writing-stories/decorators
 // декоратор для подключения глобальных стилей
