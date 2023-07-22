@@ -1,13 +1,13 @@
 import { ReactNode, useEffect } from 'react';
 import { useDispatch, useStore } from 'react-redux';
 import { Reducer } from '@reduxjs/toolkit';
-import { ReduxStoreWithManager, StateSchemaKey } from '@/app/providers/StoreProvider';
+import { ReduxStoreWithManager, StateSchema, StateSchemaKey } from '@/app/providers/StoreProvider';
 
 // Dynamic Module Loader - пере-используемый компонент, где можно передать children-компонент с
 // редюсерами, которые надо доставать только тогда когда они нужны.
 
-export type ReducersList = {
-    [name in StateSchemaKey]?: Reducer;
+export type ReducersList = { // NonNullable - исключает любой null и undefined
+    [name in StateSchemaKey]?: Reducer<NonNullable<StateSchema[name]>>;
 }
 
 interface DynamicModuleLoaderProps {
