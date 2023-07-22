@@ -1,7 +1,4 @@
-import { createSelector } from '@reduxjs/toolkit';
-import { getCounter } from '../getCounter/getCounter';
-import { CounterSchema } from '../../types/counterSchema';
-
+import { buildSelector } from '@/shared/lib/store';
 // createSelector это функция, которая принимает один или несколько селекторов, и возвращает новый селектор.
 // Селекторы, переданные в createSelector, должны быть функциями, которые возвращают значение из состояния.
 // Если состояние не изменилось, то селекторы, переданные в createSelector, не будут вызваны.
@@ -12,7 +9,6 @@ import { CounterSchema } from '../../types/counterSchema';
 
 // вкратце - createSelector - это функция, которая принимает один или несколько селекторов, и возвращает новый селектор.
 
-export const getCounterValue = createSelector(
-    getCounter,
-    (counter: CounterSchema) => counter.value,
+export const [useCounterValue, getCounterValue] = buildSelector(
+    (state) => state.counter.value,
 );
