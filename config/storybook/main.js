@@ -13,7 +13,7 @@ module.exports = {
             }, // другой аддон (storybook-addon-themes) смог работать
         },
         '@storybook/addon-interactions',
-        'storybook-addon-mock/register', // аддон для мока запросов
+        'storybook-addon-mock', // аддон для мока запросов
         'storybook-addon-themes', // аддон для добавления тем
     ],
     // 3 Path to your webpack configuration
