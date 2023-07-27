@@ -1,4 +1,4 @@
-export type Mods = Record<string, boolean | string | undefined>
+export type Mods = Record<string, boolean | string | undefined>;
 // замена CLASSNAMES REACT
 // например: classNames('remove-btn', {hovered: true, disabled: false}, ['clr-red', 'clr-green'])
 // => 'remove-btn hovered clr-red clr-green'
@@ -13,6 +13,5 @@ export function classNames(
         ...Object.entries(mods)
             .filter(([_, value]) => Boolean(value))
             .map(([className]) => className),
-    ]
-        .join(' ');
+    ].join(' ');
 }

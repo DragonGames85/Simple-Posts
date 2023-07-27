@@ -1,14 +1,22 @@
 import {
-    AnyAction, combineReducers, Reducer, ReducersMapObject,
+    AnyAction,
+    combineReducers,
+    Reducer,
+    ReducersMapObject,
 } from '@reduxjs/toolkit';
 import {
-    MountedReducers, ReducerManager, StateSchema, StateSchemaKey,
+    MountedReducers,
+    ReducerManager,
+    StateSchema,
+    StateSchemaKey,
 } from './StateSchema';
 
 // Reducer Manager нужен чтобы добавлять/удалять редюсеры когда нужно. Тоесть не тянуть ненужные
 // редюсеры в бандл, а добавлять их только тогда когда нужны
 
-export function createReducerManager(initialReducers: ReducersMapObject<StateSchema>): ReducerManager {
+export function createReducerManager(
+    initialReducers: ReducersMapObject<StateSchema>,
+): ReducerManager {
     const reducers = { ...initialReducers };
 
     let combinedReducer = combineReducers(reducers);

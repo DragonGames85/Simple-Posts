@@ -8,6 +8,7 @@ module.exports = {
         'plugin:react/recommended',
         'airbnb',
         'plugin:i18next/recommended',
+        'prettier'
     ],
     parser: '@typescript-eslint/parser',
     parserOptions: {
@@ -26,10 +27,10 @@ module.exports = {
         'unused-imports', // неиспользуемые импорты
     ],
     rules: {
-        'react/jsx-indent': [2, 4], // отступы 4 пробела [2 означает что правило работает]
-        'react/jsx-indent-props': [2, 4], // отступы для props
+        // 'react/jsx-indent': [2, 4], // отступы 4 пробела [2 означает что правило работает]
+        // 'react/jsx-indent-props': [2, 4], // отступы для props
         'unused-imports/no-unused-imports': 'error',
-        indent: [2, 4], // пробелы для обычного кода
+        // indent: [2, 4], // пробелы для обычного кода
         'react/jsx-filename-extension': [ // разрешаем расширения файлов
             2,
             { extensions: ['.js', '.jsx', '.tsx'] },
@@ -91,6 +92,7 @@ module.exports = {
                 testFilesPatterns: ['**/*.test.*', '**/*.story.*', '**/StoreDecorator.tsx'],
             },
         ],
+        'react/jsx-max-props-per-line': ['error', { maximum: 4 }],
     },
     globals: { // объявляем глобальные переменные
         __IS_DEV__: true,

@@ -13,10 +13,9 @@ export default {
     },
     clearMocks: true,
     testEnvironment: 'jsdom',
-    coveragePathIgnorePatterns: [
-        '\\\\node_modules\\\\',
-    ], // игнорируем node_modules
-    moduleFileExtensions: [ // указываем расширения файлов
+    coveragePathIgnorePatterns: ['\\\\node_modules\\\\'], // игнорируем node_modules
+    moduleFileExtensions: [
+        // указываем расширения файлов
         'js',
         'jsx',
         'ts',
@@ -24,13 +23,9 @@ export default {
         'json',
         'node',
     ],
-    moduleDirectories: [
-        'node_modules',
-    ], // указываем где node_modules
+    moduleDirectories: ['node_modules'], // указываем где node_modules
     // для абсолютных импортов
-    modulePaths: [
-        '<rootDir>src',
-    ],
+    modulePaths: ['<rootDir>src'],
     testMatch: [
         // ищем файлы с тестами
         // Обнаружил разницу между МАК ОС и ВИНДОУС!!!
@@ -45,14 +40,18 @@ export default {
         '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
         '^@/(.*)$': '<rootDir>/src/$1',
     },
-    reporters: [ // это html report для unit тестов - jest-html-reporters
+    reporters: [
+        // это html report для unit тестов - jest-html-reporters
         'default',
-        ['jest-html-reporters', {
-            publicPath: '<rootDir>/reports/unit',
-            filename: 'report.html',
-            openReport: true,
-            inlineSource: true, // всё в одном html файле - true
-        }],
+        [
+            'jest-html-reporters',
+            {
+                publicPath: '<rootDir>/reports/unit',
+                filename: 'report.html',
+                openReport: true,
+                inlineSource: true, // всё в одном html файле - true
+            },
+        ],
     ],
     // Indicates whether the coverage information should be collected while executing the test
     // collectCoverage: false,

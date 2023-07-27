@@ -7,7 +7,8 @@ export const $api = axios.create({
 // interseptor - паттерн/перехватчик, который отрабатывает перед каким-то действием, в данном случае перед запросом
 $api.interceptors.request.use((config) => {
     if (config.headers) {
-        config.headers.Authorization = localStorage.getItem(USER_LOCALSTORAGE_KEY) || '';
+        config.headers.Authorization =
+            localStorage.getItem(USER_LOCALSTORAGE_KEY) || '';
     }
     return config;
 });

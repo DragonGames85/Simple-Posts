@@ -8,7 +8,7 @@ import { BuildPaths } from '../build/types/config';
 // и в ней нет никаких зависимостей от проекта
 // поэтому в ней нет никаких путей к проекту
 
-export default ({ config }: {config: webpack.Configuration}) => {
+export default ({ config }: { config: webpack.Configuration }) => {
     const paths: BuildPaths = {
         build: '',
         html: '',
@@ -26,7 +26,8 @@ export default ({ config }: {config: webpack.Configuration}) => {
 
     // eslint-disable-next-line no-param-reassign
     // @ts-ignore
-    config!.module!.rules = config.module!.rules!.map((rule: RuleSetRule) => { // переопределяем правила
+    config!.module!.rules = config.module!.rules!.map((rule: RuleSetRule) => {
+        // переопределяем правила
         if (/svg/.test(rule.test as string)) {
             return { ...rule, exclude: /\.svg$/i };
         }
@@ -34,17 +35,21 @@ export default ({ config }: {config: webpack.Configuration}) => {
         return rule;
     });
 
-    config!.module!.rules.push({ // добавляем правило для svg
+    config!.module!.rules.push({
+        // добавляем правило для svg
         test: /\.svg$/,
         use: ['@svgr/webpack'],
     });
     config!.module!.rules.push(buildCssLoader(true)); // добавляем правило для css
 
-    config!.plugins!.push(new DefinePlugin({ // добавляем плагин для глобальных переменных
-        __IS_DEV__: JSON.stringify(true),
-        __API__: JSON.stringify('https://testapi.ru'),
-        __PROJECT__: JSON.stringify('storybook'),
-    }));
+    config!.plugins!.push(
+        new DefinePlugin({
+            // добавляем плагин для глобальных переменных
+            __IS_DEV__: JSON.stringify(true),
+            __API__: JSON.stringify('https://testapi.ru'),
+            __PROJECT__: JSON.stringify('storybook'),
+        }),
+    );
 
     return config;
 };

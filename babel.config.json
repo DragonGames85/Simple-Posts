@@ -1,15 +1,13 @@
 {
-  "presets": [
-  "@babel/preset-env", 
-  // инструмент babel для работы с typescript (нужен для jest), есть в доке jest
-  // https://babeljs.io/docs/en/babel-preset-typescript
-  "@babel/preset-typescript", 
-  // инструмент babel для работы с react (нужен для jest), есть в доке jest. {"runtime": "automatic"} нужен для автоматической подстановки react в тестах
-  // https://babeljs.io/docs/en/babel-preset-react
-  ["@babel/preset-react", {"runtime": "automatic"}] 
-  ],
-  // плагин для работы с динамическим импортом, нужен для jest
-  "plugins": [
-    "i18next-extract"
-  ]
+    "presets": [
+        "@babel/preset-env",
+        // инструмент babel для работы с typescript (нужен для jest), есть в доке jest
+        // https://babeljs.io/docs/en/babel-preset-typescript
+        "@babel/preset-typescript",
+        // инструмент babel для работы с react (нужен для jest), есть в доке jest. {"runtime": "automatic"} нужен для автоматической подстановки react в тестах
+        // https://babeljs.io/docs/en/babel-preset-react
+        ["@babel/preset-react", { "runtime": "automatic" }]
+    ],
+    // плагин для работы с динамическим импортом, нужен для jest
+    "plugins": ["i18next-extract"]
 }

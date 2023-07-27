@@ -1,5 +1,11 @@
 import {
-    createContext, ReactNode, useContext, useEffect, useMemo, useRef, useState,
+    createContext,
+    ReactNode,
+    useContext,
+    useEffect,
+    useMemo,
+    useRef,
+    useState,
 } from 'react';
 
 // этот провайдер нужен для асинхронной подгрузки библиотек
@@ -7,7 +13,8 @@ import {
 type SpringType = typeof import('@react-spring/web'); // достаем типы
 type GestureType = typeof import('@use-gesture/react');
 
-interface AnimationContextPayload { // данные для контекста
+interface AnimationContextPayload {
+    // данные для контекста
     Gesture?: GestureType;
     Spring?: SpringType;
     isLoaded?: boolean;
@@ -24,11 +31,12 @@ const getAsyncAnimationModules = async () => {
     ]);
 };
 // хук для получения данных из контекста
-export const useAnimationLibs = () => { // as Required<AnimationContextPayload> мы указываем, что результат НЕ будет undefined
+export const useAnimationLibs = () => {
+    // as Required<AnimationContextPayload> мы указываем, что результат НЕ будет undefined
     return useContext(AnimationContext) as Required<AnimationContextPayload>;
 };
 
-export const AnimationProvider = ({ children }: {children: ReactNode}) => {
+export const AnimationProvider = ({ children }: { children: ReactNode }) => {
     const SpringRef = useRef<SpringType>(); // рефы мы создаем чтобы у нас от рендера к рендеру
     const GestureRef = useRef<GestureType>(); // был доступ к значению, но не было лишних перерисовок
     const [isLoaded, setIsLoaded] = useState(false);
@@ -41,16 +49,18 @@ export const AnimationProvider = ({ children }: {children: ReactNode}) => {
         });
     }, []);
 
-    const value = useMemo(() => ({ // useMemo, так как мы значение передаем в props
-        Gesture: GestureRef.current,
-        Spring: SpringRef.current,
-        isLoaded,
-    }), [isLoaded]);
+    const value = useMemo(
+        () => ({
+            // useMemo, так как мы значение передаем в props
+            Gesture: GestureRef.current,
+            Spring: SpringRef.current,
+            isLoaded,
+        }),
+        [isLoaded],
+    );
 
     return (
-        <AnimationContext.Provider
-            value={value}
-        >
+        <AnimationContext.Provider value={value}>
             {children}
         </AnimationContext.Provider>
     );

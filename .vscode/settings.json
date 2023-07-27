@@ -1,28 +1,9 @@
 {
-    "i18n-ally.localesPaths": [
-        "public/locales",
-        "src/shared/config/i18n"
-    ],
-    "stylelint.validate": [
-        "css",
-        "less",
-        "postcss",
-        "scss"
-    ],
-    "stylelint.snippet": [
-        "css",
-        "less",
-        "postcss",
-        "scss"
-    ],
+    "i18n-ally.localesPaths": ["public/locales", "src/shared/config/i18n"],
+    "stylelint.validate": ["css", "less", "postcss", "scss"],
+    "stylelint.snippet": ["css", "less", "postcss", "scss"],
     "svg.preview.background": "custom",
-    "cSpell.words": [
-        "linebreak"
-    ],
-    "cSpell.ignoreWords": [
-        "ulbi",
-        "дженерика"
-    ],
-    "i18n-ally.keystyle": "nested",
-
+    "cSpell.words": ["linebreak"],
+    "cSpell.ignoreWords": ["ulbi", "дженерика"],
+    "i18n-ally.keystyle": "nested"
 }
