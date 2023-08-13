@@ -1,13 +1,11 @@
 import { addDecorator } from '@storybook/react';
 import { StyleDecorator } from '../../src/shared/config/storybook/StyleDecorator/StyleDecorator';
 import { ThemeDecorator } from '../../src/shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { Theme } from '../../src/app/providers/ThemeProvider';
 import { RouterDecorator } from '../../src/shared/config/storybook/RouterDecorator/RouterDecorator';
-import { SuspenseDecorator } from '../../src/shared/config/storybook/SuspenseDecorator/SuspenseDecorator';
-
-// тут пути ОТНОСИТЕЛЬНЫЕ, т.к. мы настроили абсолютные импорты только для папки src
-// файл для декораторов сторис и прочей обертки
-// https://storybook.js.org/docs/react/configure/overview#configure-story-rendering
+import {
+    SuspenseDecorator,
+} from '../../src/shared/config/storybook/SuspenseDecorator/SuspenseDecorator';
+import { Theme } from '../../src/shared/const/theme';
 
 export const parameters = {
     actions: { argTypesRegex: '^on[A-Z].*' },
@@ -17,8 +15,8 @@ export const parameters = {
             date: /Date$/,
         },
     },
-    layout: 'fullscreen', // без padding вокруг сторис
-    themes: { // темы для storybook-addon-themes
+    layout: 'fullscreen',
+    themes: {
         default: 'light',
         list: [
             { name: 'light', class: Theme.LIGHT, color: '#ffffff' },
@@ -27,12 +25,8 @@ export const parameters = {
         ],
     },
 };
-// про декораторы: https://storybook.js.org/docs/react/writing-stories/decorators
-// декоратор для подключения глобальных стилей
+
 addDecorator(StyleDecorator);
-// декоратор для светлой и темной темы
 addDecorator(ThemeDecorator(Theme.LIGHT));
-// декоратор для компонентов с ссылками href, to
 addDecorator(RouterDecorator);
-// декоратор для компонентов с suspense
 addDecorator(SuspenseDecorator);
