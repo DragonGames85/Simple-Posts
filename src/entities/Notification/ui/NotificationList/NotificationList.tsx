@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { VStack } from '@/shared/ui/deprecated/Stack';
+import { VStack } from '@/shared/ui/redesigned/Stack';
 import { Skeleton } from '@/shared/ui/deprecated/Skeleton';
 import { useNotifications } from '../../api/notificationApi';
 import cls from './NotificationList.module.scss';
@@ -13,7 +13,7 @@ interface NotificationListProps {
 export const NotificationList = memo((props: NotificationListProps) => {
     const { className } = props;
     const { data, isLoading } = useNotifications(null, {
-        pollingInterval: 100000,
+        pollingInterval: 10000,
     });
 
     if (isLoading) {
