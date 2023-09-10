@@ -63,7 +63,8 @@ module.exports = {
                     'gap',
                     'feature',
                     'color',
-                    'variant'
+                    'variant',
+                    'size'
                 ],
             },
         ],
